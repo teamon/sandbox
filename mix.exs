@@ -16,6 +16,10 @@ defmodule Ok.Mixfile do
   end
 
   defp deps do
-    [{:mix_test_watch, "~> 0.4.1", only: :dev}]
+    [
+      {:ex_doc,         "~> 0.16.1", only: :dev},
+      {:mix_test_watch, "~> 0.4.1",  only: :dev},
+      {:dialyxir,       "~> 0.5.1",  only: :dev}
+    ]
   end
 end
