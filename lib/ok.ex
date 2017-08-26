@@ -43,8 +43,26 @@ defmodule Ok do
       {:error, :notfound}
   """
   @spec wrap(any, any) :: t
+  def wrap(value, reason)
   def wrap(nil, reason), do: {:error, reason}
   def wrap(term, _reason), do: {:ok, term}
+
+
+  @doc """
+  Get value or use the fallback
+
+  ## Exapmles
+
+      iex> Ok.get({:ok, 1}, 0)
+      1
+
+      iex> Ok.get({:error, :notfound}, 0)
+      0
+  """
+  @spec get(t, any) :: any
+  def get(tuple, fallback)
+  def get({:ok, term}, _), do: term
+  def get({:error, _}, fb), do: fb
 
 
   @doc """
@@ -62,6 +80,7 @@ defmodule Ok do
       {:ok, 444}
   """
   @spec map(t, (any -> any)) :: t
+  def map(tuple, function)
   def map({:error, reason}, _), do: {:error, reason}
   def map({:ok, term}, fun), do: {:ok, fun.(term)}
 
@@ -82,6 +101,7 @@ defmodule Ok do
       {:ok, 123}
   """
   @spec each(t, (any -> any)) :: t
+  def each(tuple, function)
   def each({:error, reason}, _), do: {:error, reason}
   def each({:ok, term}, fun) do
     fun.(term)
@@ -104,6 +124,7 @@ defmodule Ok do
       {:error, "oups"}
   """
   @spec flat_map(t, (any -> t)) :: t
+  def flat_map(typle, function)
   def flat_map({:error, reason}, _fun), do: {:error, reason}
   def flat_map({:ok, term}, fun), do: fun.(term)
 
@@ -122,6 +143,7 @@ defmodule Ok do
       {:error, "oups"}
   """
   @spec flatten({:ok, t} | {:error, any}) :: t
+  def flatten(nested_tuple)
   def flatten({:error, reason}), do: {:error, reason}
   def flatten({:ok, {:error, reason}}), do: {:error, reason}
   def flatten({:ok, {:ok, term}}), do: {:ok, term}
@@ -145,6 +167,7 @@ defmodule Ok do
       {:ok, []}
   """
   @spec seq([t]) :: {:ok, list} | {:error, any}
+  def seq(list_of_tuples)
   def seq([]), do: {:ok, []}
   def seq(list), do: seq(list, {:ok, []})
   defp seq([], {:ok, oks}), do: {:ok, Enum.reverse(oks)}
@@ -167,6 +190,7 @@ defmodule Ok do
       {:error, "oups"}
   """
   @spec map_enum(tenum, (any -> any)) :: tenum
+  def map_enum(tuple_with_enum, function)
   def map_enum(t, fun), do: map(t, &Enum.map(&1, fun))
 
   @doc """
@@ -187,5 +211,6 @@ defmodule Ok do
       {:error, ["2 is bad", "3 is bad"]}
   """
   @spec flat_map_enum(tenum, (any -> any)) :: tenum
+  def map_enum(tuple_with_enum, function)
   def flat_map_enum(t, fun), do: flat_map(t, fn xs -> xs |> Enum.map(fun) |> seq end)
 end
