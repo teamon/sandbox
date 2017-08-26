@@ -1,6 +1,6 @@
 defmodule Ok do
   @moduledoc """
-  Utility module to work with {:ok, value} | {:error, reason} values
+  Utility module to work with `{:ok, value} | {:error, reason}` values
   """
 
   @type t :: {:ok, any} | {:error, any}
@@ -63,6 +63,52 @@ defmodule Ok do
   def get(tuple, fallback)
   def get({:ok, term}, _), do: term
   def get({:error, _}, fb), do: fb
+
+
+  @doc """
+  Boolean OR on tuples (tuple-or, tor)
+
+  ## Examples
+
+      iex> Ok.tor({:ok, 1}, {:ok, 2})
+      {:ok, 1}
+
+      iex> Ok.tor({:error, "oups"}, {:ok, 2})
+      {:ok, 2}
+
+      iex> Ok.tor({:ok, 1}, {:error, "meh"})
+      {:ok, 1}
+
+      iex> Ok.tor({:error, "oups"}, {:error, "meh"})
+      {:error, "meh"}
+  """
+  @spec tor(t, t) :: t
+  def tor(tuple, tuple)
+  def tor({:error, _}, next), do: next
+  def tor({:ok, term}, _), do: {:ok, term}
+
+
+  @doc """
+  Boolean AND on tuples (tuple-and, tand)
+
+  ## Examples
+
+      iex> Ok.tand({:ok, 1}, {:ok, 2})
+      {:ok, 2}
+
+      iex> Ok.tand({:error, "oups"}, {:ok, 2})
+      {:error, "oups"}
+
+      iex> Ok.tand({:ok, 1}, {:error, "meh"})
+      {:error, "meh"}
+
+      iex> Ok.tand({:error, "oups"}, {:error, "meh"})
+      {:error, "oups"}
+  """
+  @spec tand(t, t) :: t
+  def tand(tuple, tuple)
+  def tand({:error, reason}, _), do: {:error, reason}
+  def tand({:ok, _}, next), do: next
 
 
   @doc """
@@ -211,6 +257,6 @@ defmodule Ok do
       {:error, ["2 is bad", "3 is bad"]}
   """
   @spec flat_map_enum(tenum, (any -> any)) :: tenum
-  def map_enum(tuple_with_enum, function)
+  def flat_map_enum(tuple_with_enum, function)
   def flat_map_enum(t, fun), do: flat_map(t, fn xs -> xs |> Enum.map(fun) |> seq end)
 end
