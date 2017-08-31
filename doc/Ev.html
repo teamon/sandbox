@@ -1,0 +1,367 @@
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.16.3">
+    <title>Ev – sandbox v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-5b9e160cec.css" />
+    
+    <script src="dist/sidebar_items-ad05ba7f44.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        sandbox
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0
+      </h2>
+    </div>
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">sandbox v0.1.0</small>
+        Ev
+        
+      </h1>
+
+      
+        <section id="moduledoc">
+          <p>Very simple sync/async event sourcing library.
+The main purpose is to integrate some event sourcing
+into existing codebase with little to no everhead.
+It does not use any external event bus, everything happens
+in the same Beam VM with simple function calls (sync)
+or message passing (async).</p>
+<p>You need two things to integrate this library:</p>
+<ol>
+<li>Event definitions
+</li>
+<li>Event handlers
+</li>
+</ol>
+<h2 id="module-event-definitions" class="section-heading">
+  <a href="#module-event-definitions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Event definitions
+</h2>
+
+<p>Create a module (e.g. <code class="inline">MyApp.Events</code>), include <code class="inline">use Ev</code>
+passing you OTP app name (more on that later) and
+define you events. Under the hood each event is
+an Exliri struct with enforced keys and typespec.</p>
+<pre><code class="elixir">defmodule MyApp.Events do
+  use Ev, otp_app: :myapp
+
+  # Define events with defev(Name, Attr: Type)
+
+  defev UserSignedUp, user_id:    pos_integer,
+                      user_name:  String.t
+
+  defev OrderPlaced,  order_id: pos_integer,
+                      user_id:  pos_integer,
+                      value:    non_neg_integer
+end</code></pre>
+<h2 id="module-event-handlers" class="section-heading">
+  <a href="#module-event-handlers" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Event handlers
+</h2>
+
+<p>Event handlers are modules with a single <code class="inline">handle(event)</code>
+callback function. You can create as many event handlers
+as you want to.</p>
+<pre><code class="elixir">defmodule MyApp.SlackNotifications do
+  @behaviour Ev.Handler
+
+  alias MyApp.Events
+
+  def handle(%Events.UserSignedUp{} = ev) do
+    IO.puts &quot;SLACK: New user signed up! #{ev.user_name}&quot;
+  end
+
+  def handle(%Events.OrderPlaced{} = ev) do
+    IO.puts &quot;SLACK: New order placed #{ev.value}&quot;
+  end
+
+  # catch-all clause
+  def handle(_), do: :ok
+end</code></pre>
+<h2 id="module-configuration" class="section-heading">
+  <a href="#module-configuration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Configuration
+</h2>
+
+<p>To configure event handlers for different environments
+use standard mix project configuration. With this
+approach it is trivial to exclude sending emails
+or notifications in dev/test.</p>
+<pre><code class="elixir"># config/dev.exs
+config :myapp, MyApp.Events, handlers: [
+  MyApp.Indexer
+]
+
+# config/prod.exs
+config :myapp, MyApp.Events, handlers: [
+  MyApp.Indexer,
+  MyApp.SlackNotifications,
+  MyApp.MarketingEmails
+]
+
+# config/test.exs
+config :myapp, MyApp.Events, handlers: [
+  MyApp.TestHandler
+]</code></pre>
+<h2 id="module-publishing-events" class="section-heading">
+  <a href="#module-publishing-events" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Publishing events
+</h2>
+
+<p>Use <code class="inline">MyApp.Events.publish_sync/1</code> or <code class="inline">publish_async/1</code> to</p>
+
+        </section>
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#__using__/1">__using__(opts \\ [])</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Define your events module</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#defev/2">defev(name, attrs \\ [])</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Define module with struct and typespec, in single line</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#publish_async/2">publish_async(event, handlers)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Publish event to handlers asynchronously.
+Each handler will be run in a separate process</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#publish_sync/2">publish_sync(event, handlers)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Publish event to handers synchronously</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="__using__/1">
+  
+  
+    <span id="__using__/0"></span>
+  
+  <div class="detail-header">
+    <a href="#__using__/1" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <span class="signature">__using__(opts \\ [])</span>
+    
+    
+      <span class="note">(macro)</span>
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Define your events module</p>
+<p>Example:</p>
+<pre><code class="elixir">defmodule MyApp.Events do
+  use Ev, otp_app: :myapp
+
+  defev UserSignedUp, user_id: pos_integer, user_name: String.t
+  defev OrderPlaced, order_id: pos_integer, value: non_neg_integer
+end</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="defev/2">
+  
+  
+    <span id="defev/1"></span>
+  
+  <div class="detail-header">
+    <a href="#defev/2" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <span class="signature">defev(name, attrs \\ [])</span>
+    
+    
+      <span class="note">(macro)</span>
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Define module with struct and typespec, in single line</p>
+<p>Example:</p>
+<pre><code class="elixir">use Ev
+defev User, id:   integer,
+            name: String.t</code></pre>
+<p>is the same as</p>
+<pre><code class="elixir">defmodule User do
+  @type t :: %__MODULE__{
+    id:   integer,
+    name: String.t
+  }
+  @enforce_keys [:id, :name]
+  defstruct [:id, :name]
+end</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="publish_async/2">
+  
+  
+  <div class="detail-header">
+    <a href="#publish_async/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">publish_async(event, handlers)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Publish event to handlers asynchronously.
+Each handler will be run in a separate process.</p>
+
+  </section>
+</div>
+<div class="detail" id="publish_sync/2">
+  
+  
+  <div class="detail-header">
+    <a href="#publish_sync/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">publish_sync(event, handlers)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Publish event to handers synchronously</p>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.16.3),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-da04b39d0c.js"></script>
+  
+  </body>
+</html>
+

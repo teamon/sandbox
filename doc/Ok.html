@@ -1,0 +1,812 @@
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.16.3">
+    <title>Ok – sandbox v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-5b9e160cec.css" />
+    
+    <script src="dist/sidebar_items-ad05ba7f44.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<section class="sidebar">
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        sandbox
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0
+      </h2>
+    </div>
+    
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+
+    
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">sandbox v0.1.0</small>
+        Ok
+        
+      </h1>
+
+      
+        <section id="moduledoc">
+          <p>Utility module to work with <code class="inline">{:ok, value} | {:error, reason}</code> values</p>
+
+        </section>
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+          
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:tenum/0">tenum()</a>
+  </div>
+  
+</div>
+
+  </div>
+
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#each/2">each(tuple, function)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Run function if tuple is OK.
+Only useful for side effects</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#error/1">error(reason)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Wrap error into {:error, error} tuple</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#flat_map/2">flat_map(typle, function)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Flat map tuple with given fun only if it’s OK</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#flat_map_enum/2">flat_map_enum(tuple_with_enum, function)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Flat map tuple with enum given fun only if it’s OK</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#flatten/1">flatten(nested_tuple)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Flatten (also called “join”) nested tuples into single one</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/2">get(tuple, fallback)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Get value or use the fallback</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#map/2">map(tuple, function)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Map tuple with given fun only if it’s OK</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#map_enum/2">map_enum(tuple_with_enum, function)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Map tuple with enum given fun only if it’s OK</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#ok/1">ok(term)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Wrap values with {:ok, value} tuple</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#seq/1">seq(list_of_tuples)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Convert list of ok/error tuples into ok/error tuple of list</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#tand/2">tand(tuple, tuple)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Boolean AND on tuples (tuple-and, tand)</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#tor/2">tor(tuple, tuple)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Boolean OR on tuples (tuple-or, tor)</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#wrap/2">wrap(value, reason)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Wrap value in {:ok, value} tuple.
+If the value is nil return {:error, reason} tuple instead</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+        </section>
+      
+
+      
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Types
+          </h1>
+          <div class="types-list">
+            <div class="detail" id="t:t/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">t()</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>t() :: {:ok, any} | {:error, any}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="t:tenum/0">
+  
+  
+  <div class="detail-header">
+    <a href="#t:tenum/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">tenum()</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>tenum() :: {:ok, <a href="https://hexdocs.pm/elixir/Enum.html#t:t/0">Enum.t</a>} | {:error, any}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+
+          </div>
+        </section>
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="each/2">
+  
+  
+  <div class="detail-header">
+    <a href="#each/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">each(tuple, function)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>each(<a href="#t:t/0">t</a>, (any -> any)) :: <a href="#t:t/0">t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Run function if tuple is OK.
+Only useful for side effects</p>
+<h2 id="each/2-examples" class="section-heading">
+  <a href="#each/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.each({:ok, 2}, fn x -&gt; x * 5 end)
+{:ok, 2}
+
+iex&gt; Ok.each({:error, &quot;oups&quot;}, fn x -&gt; x * 5 end)
+{:error, &quot;oups&quot;}
+
+iex&gt; {:ok, 123} |&gt; Ok.map(&amp;IO.inspect/1)
+{:ok, 123}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="error/1">
+  
+  
+  <div class="detail-header">
+    <a href="#error/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">error(reason)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>error(any) :: {:error, any}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Wrap error into {:error, error} tuple</p>
+<h2 id="error/1-examples" class="section-heading">
+  <a href="#error/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.error(:econnrefused)
+{:error, :econnrefused}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="flat_map/2">
+  
+  
+  <div class="detail-header">
+    <a href="#flat_map/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">flat_map(typle, function)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>flat_map(<a href="#t:t/0">t</a>, (any -> <a href="#t:t/0">t</a>)) :: <a href="#t:t/0">t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Flat map tuple with given fun only if it’s OK</p>
+<h2 id="flat_map/2-examples" class="section-heading">
+  <a href="#flat_map/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.flat_map({:ok, 2}, fn x -&gt; {:ok, x + 1} end)
+{:ok, 3}
+
+iex&gt; Ok.flat_map({:ok, 2}, fn _ -&gt; {:error, &quot;oups&quot;} end)
+{:error, &quot;oups&quot;}
+
+iex&gt; Ok.flat_map({:error, &quot;oups&quot;}, fn x -&gt; {:ok, x + 1} end)
+{:error, &quot;oups&quot;}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="flat_map_enum/2">
+  
+  
+  <div class="detail-header">
+    <a href="#flat_map_enum/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">flat_map_enum(tuple_with_enum, function)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>flat_map_enum(<a href="#t:tenum/0">tenum</a>, (any -> any)) :: <a href="#t:tenum/0">tenum</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Flat map tuple with enum given fun only if it’s OK</p>
+<h2 id="flat_map_enum/2-examples" class="section-heading">
+  <a href="#flat_map_enum/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.flat_map_enum({:ok, [1,2,3]}, fn x -&gt; {:ok, x + 1} end)
+{:ok, [2,3,4]}
+
+iex&gt; Ok.map_enum({:error, &quot;oups&quot;}, fn x -&gt; x + 1 end)
+{:error, &quot;oups&quot;}
+
+iex&gt; Ok.flat_map_enum {:ok, [1,2,3]}, fn
+...&gt;   1 -&gt; {:ok, 1}
+...&gt;   x -&gt; {:error, &quot;#{x} is bad&quot;}
+...&gt; end
+{:error, [&quot;2 is bad&quot;, &quot;3 is bad&quot;]}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="flatten/1">
+  
+  
+  <div class="detail-header">
+    <a href="#flatten/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">flatten(nested_tuple)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>flatten({:ok, <a href="#t:t/0">t</a>} | {:error, any}) :: <a href="#t:t/0">t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Flatten (also called “join”) nested tuples into single one</p>
+<h2 id="flatten/1-examples" class="section-heading">
+  <a href="#flatten/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.flatten({:ok, {:ok, 1}})
+{:ok, 1}
+
+iex&gt; Ok.flatten({:error, {:ok, &quot;hm&quot;}})
+{:error, {:ok, &quot;hm&quot;}}
+
+iex&gt; Ok.flatten({:ok, {:error, &quot;oups&quot;}})
+{:error, &quot;oups&quot;}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="get/2">
+  
+  
+  <div class="detail-header">
+    <a href="#get/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">get(tuple, fallback)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>get(<a href="#t:t/0">t</a>, any) :: any</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Get value or use the fallback</p>
+<h2 id="get/2-exapmles" class="section-heading">
+  <a href="#get/2-exapmles" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Exapmles
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.get({:ok, 1}, 0)
+1
+
+iex&gt; Ok.get({:error, :notfound}, 0)
+0</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="map/2">
+  
+  
+  <div class="detail-header">
+    <a href="#map/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">map(tuple, function)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>map(<a href="#t:t/0">t</a>, (any -> any)) :: <a href="#t:t/0">t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Map tuple with given fun only if it’s OK</p>
+<h2 id="map/2-examples" class="section-heading">
+  <a href="#map/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.map({:ok, 2}, fn x -&gt; x * 5 end)
+{:ok, 10}
+
+iex&gt; Ok.map({:error, &quot;oups&quot;}, fn x -&gt; x * 5 end)
+{:error, &quot;oups&quot;}
+
+iex&gt; {:ok, 123} |&gt; Ok.map(&amp; &amp;1 + 321)
+{:ok, 444}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="map_enum/2">
+  
+  
+  <div class="detail-header">
+    <a href="#map_enum/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">map_enum(tuple_with_enum, function)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>map_enum(<a href="#t:tenum/0">tenum</a>, (any -> any)) :: <a href="#t:tenum/0">tenum</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Map tuple with enum given fun only if it’s OK</p>
+<h2 id="map_enum/2-examples" class="section-heading">
+  <a href="#map_enum/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.map_enum({:ok, [1,2,3]}, fn x -&gt; x + 1 end)
+{:ok, [2,3,4]}
+
+iex&gt; Ok.map_enum({:error, &quot;oups&quot;}, fn x -&gt; x + 1 end)
+{:error, &quot;oups&quot;}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="ok/1">
+  
+  
+  <div class="detail-header">
+    <a href="#ok/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">ok(term)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>ok(any) :: {:ok, any}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Wrap values with {:ok, value} tuple</p>
+<h2 id="ok/1-examples" class="section-heading">
+  <a href="#ok/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.ok(1)
+{:ok, 1}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="seq/1">
+  
+  
+  <div class="detail-header">
+    <a href="#seq/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">seq(list_of_tuples)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>seq([<a href="#t:t/0">t</a>]) :: {:ok, list} | {:error, any}</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Convert list of ok/error tuples into ok/error tuple of list</p>
+<h2 id="seq/1-examples" class="section-heading">
+  <a href="#seq/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.seq([{:ok, 1}, {:ok, 2}, {:ok, 3}])
+{:ok, [1,2,3]}
+
+iex&gt; Ok.seq([{:error, &quot;oups&quot;}, {:error, &quot;meh&quot;}])
+{:error, [&quot;oups&quot;, &quot;meh&quot;]}
+
+iex&gt; Ok.seq([{:ok, 1}, {:error, &quot;bad 2&quot;}, {:error, &quot;bad 3&quot;}, {:ok, 4}])
+{:error, [&quot;bad 2&quot;, &quot;bad 3&quot;]}
+
+iex&gt; Ok.seq([])
+{:ok, []}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="tand/2">
+  
+  
+  <div class="detail-header">
+    <a href="#tand/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">tand(tuple, tuple)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>tand(<a href="#t:t/0">t</a>, <a href="#t:t/0">t</a>) :: <a href="#t:t/0">t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Boolean AND on tuples (tuple-and, tand)</p>
+<h2 id="tand/2-examples" class="section-heading">
+  <a href="#tand/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.tand({:ok, 1}, {:ok, 2})
+{:ok, 2}
+
+iex&gt; Ok.tand({:error, &quot;oups&quot;}, {:ok, 2})
+{:error, &quot;oups&quot;}
+
+iex&gt; Ok.tand({:ok, 1}, {:error, &quot;meh&quot;})
+{:error, &quot;meh&quot;}
+
+iex&gt; Ok.tand({:error, &quot;oups&quot;}, {:error, &quot;meh&quot;})
+{:error, &quot;oups&quot;}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="tor/2">
+  
+  
+  <div class="detail-header">
+    <a href="#tor/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">tor(tuple, tuple)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>tor(<a href="#t:t/0">t</a>, <a href="#t:t/0">t</a>) :: <a href="#t:t/0">t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Boolean OR on tuples (tuple-or, tor)</p>
+<h2 id="tor/2-examples" class="section-heading">
+  <a href="#tor/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.tor({:ok, 1}, {:ok, 2})
+{:ok, 1}
+
+iex&gt; Ok.tor({:error, &quot;oups&quot;}, {:ok, 2})
+{:ok, 2}
+
+iex&gt; Ok.tor({:ok, 1}, {:error, &quot;meh&quot;})
+{:ok, 1}
+
+iex&gt; Ok.tor({:error, &quot;oups&quot;}, {:error, &quot;meh&quot;})
+{:error, &quot;meh&quot;}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="wrap/2">
+  
+  
+  <div class="detail-header">
+    <a href="#wrap/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">wrap(value, reason)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>wrap(any, any) :: <a href="#t:t/0">t</a></pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>Wrap value in {:ok, value} tuple.
+If the value is nil return {:error, reason} tuple instead</p>
+<h2 id="wrap/2-exapmles" class="section-heading">
+  <a href="#wrap/2-exapmles" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Exapmles
+</h2>
+
+<pre><code class="iex elixir">iex&gt; Ok.wrap(2, :notfound)
+{:ok, 2}
+
+iex&gt; Ok.wrap(nil, :notfound)
+{:error, :notfound}</code></pre>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.16.3),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle"><span class="sr-only">Switch theme</span></button>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-da04b39d0c.js"></script>
+  
+  </body>
+</html>
+
