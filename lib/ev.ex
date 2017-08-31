@@ -143,9 +143,9 @@ defmodule Ev do
   Define module with struct and typespec, in single line
 
   Example:
-      use Box
-      defevent User,  id:   integer,
-                      name: String.t
+      use Ev
+      defev User, id:   integer,
+                  name: String.t
   is the same as
       defmodule User do
         @type t :: %__MODULE__{
