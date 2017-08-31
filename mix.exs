@@ -1,9 +1,9 @@
-defmodule Ok.Mixfile do
+defmodule Sandbox.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :ok,
+      app: :sandbox,
       version: "0.1.0",
       elixir: "~> 1.4",
       start_permanent: Mix.env == :prod,
