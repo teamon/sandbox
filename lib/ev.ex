@@ -162,7 +162,7 @@ defmodule Ev do
     quote do
       defmodule unquote(name) do
         @enforce_keys unquote(keys)
-        defstruct unquote(keys)
+        defstruct @enforce_keys
         @type t :: %__MODULE__{
           unquote_splicing(attrs)
         }
