@@ -85,6 +85,19 @@ defmodule Ev do
 
   Use `MyApp.Events.publish_sync/1` or `publish_async/1` to
 
+  ## Event definitions in multiple files
+
+  You might want to split events definitions into separate files.
+  To do this create a new module and use an `import` statement to
+  get access to `defev` macro.
+
+      # events/shop.ex
+      defmodule Events.Shop do
+        import Ev, only: [defev: 2]
+
+        defev Opened, shop_id: integer
+      end
+
   """
 
   defmodule Handler do

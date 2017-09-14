@@ -16,6 +16,12 @@ defmodule EvTest do
                         value:    non_neg_integer
   end
 
+  defmodule Events.Scoped do
+    import Ev, only: [defev: 2]
+
+    defev One, two: integer
+  end
+
   defmodule TestHandler do
     alias Events
 
